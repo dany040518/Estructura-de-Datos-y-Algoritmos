@@ -1,0 +1,79 @@
+var contactos := array[] of {nombre:string, telefono:string, correo:string}
+
+fun agregar(nombre, telefono, correo) :
+  var contacto := {nombre := nombre, telefono := telefono, correo := correo};
+  contactos.append(contacto);
+  print("Contacto agregado con éxito.");
+
+fun eliminar(nombre) :
+  var eliminarContacto := null;
+  var i := 0;
+  [] i < length(contactos) & eliminarContacto == null ->
+    if contactos[i]["nombre"] == nombre -> 
+      eliminarContacto := contactos[i];
+    fi;
+    i := i + 1;
+  [] eliminarContacto != null ->
+    contactos.remove(eliminarContacto);
+    print("Contacto eliminado con éxito.");
+  [] eliminarContacto == null -> print("Contacto no encontrado.");
+  fi;
+
+fun buscar(nombre) :
+  var encontrado := false;
+  var i := 0;
+  [] i < length(contactos) & encontrado == false ->
+    if contactos[i]["nombre"] == nombre ->
+      print("Información del contacto ", nombre, ":");
+      print(" Nombre: ", contactos[i]["nombre"]);
+      print(" Teléfono: ", contactos[i]["telefono"]);
+      print(" Correo: ", contactos[i]["correo"]);
+      encontrado := true;
+    fi;
+    i := i + 1;
+  [] encontrado == false -> print("Contacto no encontrado.");
+  fi;
+
+fun organizar() :
+  var i := 0;
+  var j := 0;
+  var temp := null;
+  [] i < length(contactos) - 1 ->
+    j := i + 1;
+    [] j < length(contactos) ->
+        if contactos[i]["nombre"] > contactos[j]["nombre"] ->
+            temp := contactos[i];
+            contactos[i] := contactos[j];
+            contactos[j] := temp;
+        fi;
+        j := j + 1;
+    i := i + 1;
+  [] i := 0;
+  [] i < length(contactos) ->
+    print(" - ", contactos[i]["nombre"]);
+    i := i + 1;
+  fi;
+
+fun ejecutar_comando(comando) :
+  var partes := split(comando, " ");
+  var accion := upper(partes[0]);
+  
+  if 
+    [] accion == "AGREGAR" & length(partes) == 4 ->
+        agregar(partes[1], partes[2], partes[3]);
+    [] accion == "ELIMINAR" & length(partes) == 2 ->
+        eliminar(partes[1]);
+    [] accion == "BUSCAR" & length(partes) == 2 ->
+        buscar(partes[1]);
+    [] accion == "ORGANIZAR" ->
+        organizar();
+    [] print("Comando no válido o parámetros incorrectos.");
+  fi;
+
+fun main() :
+  [] true ->
+    while true ->
+      var comando := input("");
+      ejecutar_comando(comando);
+    od;
+  fi;
