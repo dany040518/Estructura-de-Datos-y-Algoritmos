@@ -1,7 +1,7 @@
 contactos = []
 
 def agregar(nombre, telefono, correo):
-    contacto = {"nombre": nombre, "telefono": telefono, "correo": correo}
+    contacto = {nombre, telefono, correo}
     contactos.append(contacto)
     print("Contacto agregado con éxito.")
 
