@@ -49,6 +49,8 @@ def ejecutar_comando(comando):
         buscar(nombre)
     elif accion == "ORGANIZAR":
         organizar()
+    elif accion == "SALIR":
+        exit()
     else:
         print("Comando no válido o parámetros incorrectos.")
 
