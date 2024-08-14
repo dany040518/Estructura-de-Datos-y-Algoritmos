@@ -33,41 +33,6 @@ def organizar():
     for contacto in contactos:
         print(f" - {contacto['nombre']}")
 
-contactos = []
-
-def agregar(nombre, telefono, correo):
-    contacto = {"nombre": nombre, "telefono": telefono, "correo": correo}
-    contactos.append(contacto)
-    print("Contacto agregado con éxito.")
-
-def eliminar(nombre):
-    eliminarContacto = None
-    for contacto in contactos:
-        if contacto["nombre"] == nombre:
-            eliminarContacto = contacto
-            break
-    if eliminarContacto:
-        contactos.remove(eliminarContacto)
-        print("Contacto eliminado con éxito.")
-    else:
-        print("Contacto no encontrado.")
-
-def buscar(nombre):
-    for contacto in contactos:
-        if contacto["nombre"] == nombre:
-            print(f"Información del contacto {nombre}:")
-            print(f" Nombre: {contacto['nombre']}")
-            print(f" Teléfono: {contacto['telefono']}")
-            print(f" Correo: {contacto['correo']}")
-            return
-    print("Contacto no encontrado.")
-
-def organizar():
-    contactos.sort(key=lambda contacto: contacto["nombre"])
-    print("Lista de contactos organizada:")
-    for contacto in contactos:
-        print(f" - {contacto['nombre']}")
-
 def ejecutar_comando(comando):
     partes = comando.split()
     accion = partes[0].upper()
