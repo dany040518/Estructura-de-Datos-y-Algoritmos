@@ -1,0 +1,5 @@
+AGREGAR Juan 123456789 juan@email.com
+AGREGAR Maria 987654321 maria@email.com
+BUSCAR Juan
+ELIMINAR Maria
+ORGANIZAR
